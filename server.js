@@ -1,5 +1,6 @@
 // Import required packages
 const express = require('express');
+const cors = require('cors');
 require('dotenv').config(); // Loads .env file contents into process.env
 
 
@@ -9,6 +10,22 @@ const bookingRoutes = require('./routes/bookingRoutes');
 // Initialize the express app
 const app = express();
 
+const allowedOrigins = [
+  'http://localhost:5173', // Your local frontend
+  // 'https://your-frontend-app.vercel.app' // Your future deployed frontend
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 // This allows our app to understand JSON in request bodies
 app.use(express.json());
 
