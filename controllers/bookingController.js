@@ -3,7 +3,9 @@ const db = require('../config/db');
 exports.createBooking = async (req, res) => {
   // 1. Get the booking details from the request body
   // We'll get user_id, show_id, and seat_id
-  const { user_id, show_id, seat_id } = req.body;
+  const { show_id, seat_id } = req.body;
+
+  const user_id = req.user.id;
 
   // 2. Start a database transaction
   const trx = await db.transaction();

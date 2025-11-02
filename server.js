@@ -7,6 +7,8 @@ require('dotenv').config(); // Loads .env file contents into process.env
 const movieRoutes = require('./routes/movieRoutes');
 const showRoutes = require('./routes/showRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
+const authRoutes = require('./routes/authRoutes');
+
 // Initialize the express app
 const app = express();
 
@@ -41,6 +43,7 @@ app.get('/', (req, res) => {
 app.use('/api/movies', movieRoutes);
 app.use('/api/shows', showRoutes);
 app.use('/api/bookings', bookingRoutes);
+app.use('/api/auth', authRoutes);
 
 // Start the server and listen for requests
 app.listen(PORT, () => {
