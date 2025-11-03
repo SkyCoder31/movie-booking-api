@@ -7,10 +7,18 @@ exports.getSeatsForShow = async (req, res) => {
 
     // 2. Find all seats for that specific show
     const seats = await db('seats')
-      .where({ show_id: showId })
-      .select('id', 'row', 'number', 'status', 'price')
-      .orderBy('row', 'asc') // Order them nicely
-      .orderBy('number', 'asc');
+  .leftJoin('bookings', 'seats.id', 'bookings.seat_id')
+  .where({ 'seats.show_id': showId })
+  .select(
+    'seats.id as id',
+    'seats.row',
+    'seats.number',
+    'seats.status',
+    'seats.price',
+    'bookings.user_id'
+  )
+  .orderBy('seats.row', 'asc')
+  .orderBy('seats.number', 'asc');
 
     // 3. Check if any seats were found
     if (seats.length === 0) {
