@@ -14,7 +14,7 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:5173', // Your local frontend
-  'https://movie-booking-ui.vercel.app/' // Your deployed frontend
+  'https://movie-booking-ui.vercel.app' // Your deployed frontend
 ];
 
 const corsOptions = {
