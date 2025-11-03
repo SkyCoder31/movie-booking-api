@@ -14,11 +14,13 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:5173', // Your local frontend
-  'https://movie-booking-ui.vercel.app/' // Your future deployed frontend
+  'https://movie-booking-ui.vercel.app/' // Your deployed frontend
 ];
 
 const corsOptions = {
   origin: (origin, callback) => {
+    console.log('CORS CHECK: Received origin:', origin);
+    console.log('CORS CHECK: Allowed origins:', allowedOrigins);
     if (allowedOrigins.includes(origin) || !origin) {
       callback(null, true);
     } else {
