@@ -8,6 +8,6 @@ const movieController = require('../controllers/movieController');
 // A GET request to /api/movies/ will run the getAllMovies function
 router.get('/', movieController.getAllMovies);
 
-// We'll add more routes here later (e.g., GET /:id)
+router.get('/:movieId/shows', movieController.getShowsForMovie);
 
 module.exports = router;
